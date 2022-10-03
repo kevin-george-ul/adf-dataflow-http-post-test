@@ -17,6 +17,6 @@ Results from ADF Dataflow shows the highlighted body is `null`
 
 <img width="1390" alt="image" src="https://user-images.githubusercontent.com/91074239/193567278-3b75d5f2-cf99-496f-a49e-403f43296ff6.png">
 
-Results from Postman clearly shows body is not null
+Results from Postman clearly shows body is not null but the above dataflow shows the columns/properties but their values are `null`
 
 <img width="718" alt="image" src="https://user-images.githubusercontent.com/91074239/193567242-95f7a0d9-a927-4292-9ee5-ecf1354510f7.png">
