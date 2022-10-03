@@ -5,11 +5,12 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "ds_csv_file_gist",
-						"type": "DatasetReference"
+					"linkedService": {
+						"referenceName": "ls_rest_githubusercontent",
+						"type": "LinkedServiceReference"
 					},
-					"name": "csvSource"
+					"name": "jsonSourceGist",
+					"description": "Get data from \n\nhttps://gist.githubusercontent.com/kevin-george-ul/94910ae3db6f359a83bd01730cce8ce0/raw/6d67ee9be0c19ca6a93b5e60649255a4fc3c9490/randomText.json"
 				}
 			],
 			"sinks": [],
@@ -23,13 +24,14 @@
 				}
 			],
 			"scriptLines": [
-				"source(output(",
-				"          text as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> csvSource",
-				"csvSource call(mapColumn(",
+				"     format: 'rest',",
+				"     timeout: 30,",
+				"     entity: '/kevin-george-ul/94910ae3db6f359a83bd01730cce8ce0/raw/6d67ee9be0c19ca6a93b5e60649255a4fc3c9490/randomText.json',",
+				"     httpMethod: 'GET',",
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'arrayOfDocuments']) ~> jsonSourceGist",
+				"jsonSourceGist call(mapColumn(",
 				"          body = text",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
