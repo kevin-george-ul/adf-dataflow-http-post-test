@@ -21,18 +21,25 @@
 						"referenceName": "ls_rest_httpbin",
 						"type": "LinkedServiceReference"
 					}
+				},
+				{
+					"name": "selectSomeText"
 				}
 			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          body as (text as string),",
+				"          headers as [string,string]",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'rest',",
 				"     timeout: 30,",
 				"     entity: '/kevin-george-ul/94910ae3db6f359a83bd01730cce8ce0/raw/6d67ee9be0c19ca6a93b5e60649255a4fc3c9490/randomText.json',",
 				"     httpMethod: 'GET',",
 				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'arrayOfDocuments']) ~> jsonSourceGist",
-				"jsonSourceGist call(mapColumn(",
-				"          body = text",
+				"selectSomeText call(mapColumn(",
+				"          body = SomeText",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
@@ -52,7 +59,12 @@
 				"     statusColumnName: 'status',",
 				"     addResponseCode: true,",
 				"     requestFormat: ['type' -> 'json'],",
-				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> callHttpPasteBin"
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> callHttpPasteBin",
+				"jsonSourceGist select(mapColumn(",
+				"          SomeText = body.text",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectSomeText"
 			]
 		}
 	}
