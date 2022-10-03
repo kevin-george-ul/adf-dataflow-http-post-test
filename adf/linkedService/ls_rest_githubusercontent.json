@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://gist.githubusercontent.com/",
+			"url": "https://gist.githubusercontent.com",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
