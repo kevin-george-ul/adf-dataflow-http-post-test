@@ -1,0 +1,57 @@
+{
+	"name": "dataflow_http_post_to_httpbin",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_csv_file_gist",
+						"type": "DatasetReference"
+					},
+					"name": "csvSource"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "callHttpPasteBin",
+					"linkedService": {
+						"referenceName": "ls_rest_httpbin",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          text as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> csvSource",
+				"csvSource call(mapColumn(",
+				"          body = text",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     output(",
+				"          headers as [string,string],",
+				"          status as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     format: 'rest',",
+				"     store: 'restservice',",
+				"     timeout: 30,",
+				"     queryParameters = [testargument -> true],",
+				"     httpMethod: 'POST',",
+				"     entity: '/post',",
+				"     headerColumnName: 'headers',",
+				"     bodyColumnName: 'body',",
+				"     statusColumnName: 'status',",
+				"     addResponseCode: true,",
+				"     requestFormat: ['type' -> 'json'],",
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> callHttpPasteBin"
+			]
+		}
+	}
+}
