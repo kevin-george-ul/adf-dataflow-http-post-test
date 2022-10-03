@@ -7,7 +7,13 @@ This supports issues raised in
 
 ## Http Post Body is `null`
 
-Results from ADF Dataflow, as you can see the highlighted body is null
+Results from ADF Dataflow shows the highlighted body is `null`
+
+**Settings:**
+
+<img width="701" alt="image" src="https://user-images.githubusercontent.com/91074239/193567804-6134f48f-e375-4aad-8a96-48aca5bf5098.png">
+
+**Data Preview:**
 
 <img width="1390" alt="image" src="https://user-images.githubusercontent.com/91074239/193567278-3b75d5f2-cf99-496f-a49e-403f43296ff6.png">
 
