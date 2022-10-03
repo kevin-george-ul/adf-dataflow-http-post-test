@@ -70,7 +70,7 @@
 				"     statusColumnName: 'status',",
 				"     addResponseCode: true,",
 				"     requestFormat: ['type' -> 'json'],",
-				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> callHttpPasteBin",
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'singleDocument']) ~> callHttpPasteBin",
 				"jsonSourceGist select(mapColumn(",
 				"          SomeInputText = body.text",
 				"     ),",
