@@ -24,6 +24,9 @@
 				},
 				{
 					"name": "selectSomeText"
+				},
+				{
+					"name": "select2"
 				}
 			],
 			"scriptLines": [
@@ -51,11 +54,11 @@
 				"     format: 'rest',",
 				"     store: 'restservice',",
 				"     timeout: 30,",
-				"     queryParameters = [testargument -> true],",
+				"     queryParameters = [\"testargument\" -> true],",
 				"     httpMethod: 'POST',",
 				"     entity: '/post',",
 				"     headerColumnName: 'headers',",
-				"     bodyColumnName: 'body',",
+				"     bodyColumnName: 'responseBody',",
 				"     statusColumnName: 'status',",
 				"     addResponseCode: true,",
 				"     requestFormat: ['type' -> 'json'],",
@@ -64,7 +67,9 @@
 				"          SomeText = body.text",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> selectSomeText"
+				"     skipDuplicateMapOutputs: true) ~> selectSomeText",
+				"callHttpPasteBin select(skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2"
 			]
 		}
 	}
