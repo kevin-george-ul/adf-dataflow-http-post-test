@@ -1,0 +1,27 @@
+{
+	"name": "ds_csv_file_gist",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_http_gist_content",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "/kevin-george-ul/eea4c7a2184c63a62c1732ddc7ffc9c8/raw/7269ca618264b7880d49db234c8f2095c349e429/randomText.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "text",
+				"type": "String"
+			}
+		]
+	}
+}
